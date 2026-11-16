@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maturitnı zošit</title>
+<title>MaturitnÃ½ zoÅ¡it</title>
 
 <style>
 * {
@@ -124,55 +124,55 @@ button:hover {
 <body>
 
 <header>
-  <h1>?? Maturitnı zošit</h1>
-  <p>Všetky tvoje maturitné otázky na jednom mieste.</p>
+  <h1>?? MaturitnÃ½ zoÅ¡it</h1>
+  <p>VÅ¡etky tvoje maturitnÃ© otÃ¡zky na jednom mieste.</p>
 </header>
 
 <div class="container">
 
   <div class="panel">
-    <h2>?? Môj pokrok</h2>
+    <h2>?? MÃ´j pokrok</h2>
     <div class="stats">
       <div class="stat">
         <h2 id="total">0</h2>
-        <span>Otázok</span>
+        <span>OtÃ¡zok</span>
       </div>
       <div class="stat">
         <h2 id="learned">0</h2>
-        <span>Nauèenıch</span>
+        <span>NauÃ¨enÃ½ch</span>
       </div>
       <div class="stat">
         <h2 id="favorites">0</h2>
-        <span>Ob¾úbenıch</span>
+        <span>ObÂ¾ÃºbenÃ½ch</span>
       </div>
     </div>
   </div>
 
   <div class="panel">
-    <h2>? Prida maturitnú otázku</h2>
+    <h2>? PridaÂ maturitnÃº otÃ¡zku</h2>
 
-    <input id="subject" placeholder="Predmet (napr. Slovenskı jazyk)">
+    <input id="subject" placeholder="Predmet (napr. SlovenskÃ½ jazyk)">
 
-    <input id="title" placeholder="Názov otázky (napr. Realizmus)">
+    <input id="title" placeholder="NÃ¡zov otÃ¡zky (napr. Realizmus)">
 
     <textarea id="content"
-      placeholder="Sem vlo svoju maturitnú otázku, poznámky alebo odpoveï..."></textarea>
+      placeholder="Sem vloÅ¾ svoju maturitnÃº otÃ¡zku, poznÃ¡mky alebo odpoveÃ¯..."></textarea>
 
-    <button onclick="addQuestion()">Prida otázku</button>
+    <button onclick="addQuestion()">PridaÂ otÃ¡zku</button>
   </div>
 
   <div class="panel">
-    <h2>?? Moje otázky</h2>
+    <h2>?? Moje otÃ¡zky</h2>
 
     <input id="search"
-      placeholder="Vyh¾ada otázku alebo predmet..."
+      placeholder="VyhÂ¾adaÂ otÃ¡zku alebo predmet..."
       oninput="render()">
 
     <select id="filter" onchange="render()">
-      <option value="all">Všetky otázky</option>
-      <option value="learned">Nauèené</option>
-      <option value="unlearned">Nenauèené</option>
-      <option value="favorite">Ob¾úbené</option>
+      <option value="all">VÅ¡etky otÃ¡zky</option>
+      <option value="learned">NauÃ¨enÃ©</option>
+      <option value="unlearned">NenauÃ¨enÃ©</option>
+      <option value="favorite">ObÂ¾ÃºbenÃ©</option>
     </select>
 
     <div id="questions"></div>
@@ -198,7 +198,7 @@ function addQuestion() {
   const content = document.getElementById("content").value.trim();
 
   if (!subject || !title || !content) {
-    alert("Vyplò predmet, názov aj obsah otázky!");
+    alert("VyplÃ² predmet, nÃ¡zov aj obsah otÃ¡zky!");
     return;
   }
 
@@ -235,7 +235,7 @@ function toggleFavorite(id) {
 }
 
 function deleteQuestion(id) {
-  if (!confirm("Naozaj chceš vymaza túto otázku?")) return;
+  if (!confirm("Naozaj chceÅ¡ vymazaÂ tÃºto otÃ¡zku?")) return;
 
   questions = questions.filter(q => q.id !== id);
   save();
@@ -245,10 +245,10 @@ function deleteQuestion(id) {
 function editQuestion(id) {
   const q = questions.find(q => q.id === id);
 
-  const newTitle = prompt("Názov otázky:", q.title);
+  const newTitle = prompt("NÃ¡zov otÃ¡zky:", q.title);
   if (newTitle === null || !newTitle.trim()) return;
 
-  const newContent = prompt("Obsah otázky:", q.content);
+  const newContent = prompt("Obsah otÃ¡zky:", q.content);
   if (newContent === null) return;
 
   q.title = newTitle.trim();
@@ -278,7 +278,7 @@ function render() {
   container.innerHTML = "";
 
   if (filtered.length === 0) {
-    container.innerHTML = "<p>Zatia¾ tu nie sú iadne otázky.</p>";
+    container.innerHTML = "<p>ZatiaÂ¾ tu nie sÃº Å¾iadne otÃ¡zky.</p>";
   }
 
   filtered.forEach(q => {
@@ -297,21 +297,21 @@ function render() {
     content.textContent = q.content;
 
     const learned = document.createElement("button");
-    learned.textContent = q.learned ? "? Nauèené" : "?? Oznaèi ako nauèené";
+    learned.textContent = q.learned ? "? NauÃ¨enÃ©" : "?? OznaÃ¨iÂ ako nauÃ¨enÃ©";
     learned.onclick = () => toggleLearned(q.id);
 
     const favorite = document.createElement("button");
     favorite.className = "favorite";
-    favorite.textContent = q.favorite ? "? Ob¾úbené" : "? Ob¾úbi";
+    favorite.textContent = q.favorite ? "? ObÂ¾ÃºbenÃ©" : "? ObÂ¾ÃºbiÂ";
     favorite.onclick = () => toggleFavorite(q.id);
 
     const edit = document.createElement("button");
-    edit.textContent = "?? Upravi";
+    edit.textContent = "?? UpraviÂ";
     edit.onclick = () => editQuestion(q.id);
 
     const remove = document.createElement("button");
     remove.className = "delete";
-    remove.textContent = "??? Vymaza";
+    remove.textContent = "??? VymazaÂ";
     remove.onclick = () => deleteQuestion(q.id);
 
     card.append(
